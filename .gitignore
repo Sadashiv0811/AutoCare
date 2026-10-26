@@ -1,0 +1,42 @@
+bin/
+obj/
+!*.example
+
+
+# Visual Studio
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build output
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+artifacts/
+publish/
+
+# Test output
+TestResults/
+
+# Local secrets and environment files
+.env
+.env.*
+!.env.example
+appsettings.Development.json
+appsettings.Production.json
+secrets.json
+
+# Logs
+*.log
+logs/
+
+# Temporary and backup files
+*.tmp
+*.bak
+*.old
+
+TXT

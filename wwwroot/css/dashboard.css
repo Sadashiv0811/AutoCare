@@ -1,0 +1,369 @@
+/* =========================
+   Dashboard Layout
+========================= */
+
+.container-fluid>.d-flex {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+
+/* =========================
+   Dashboard Section Navigation
+========================= */
+
+.dashboard-section-nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+
+    display: flex;
+    gap: 6px;
+
+    padding: 10px 0;
+    margin-bottom: 20px;
+
+    background-color: #f5f6fa;
+    border-bottom: 1px solid #dee2e6;
+
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.dashboard-section-nav a {
+    padding: 7px 14px;
+
+    color: #495057;
+    text-decoration: none;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.dashboard-section-nav a:hover,
+.dashboard-section-nav a.active {
+    background-color: #e9ecef;
+    color: #0d6efd;
+}
+
+
+/* =========================
+   Dashboard Filter
+========================= */
+
+.dashboard-filter {
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+
+    padding: 18px;
+    margin-bottom: 28px;
+
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+
+/* =========================
+   Dashboard Sections
+========================= */
+
+.dashboard-section {
+    scroll-margin-top: 75px;
+    margin-bottom: 40px;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 15px;
+    margin-bottom: 14px;
+}
+
+.section-heading h3 {
+    margin-bottom: 3px;
+    font-size: 22px;
+}
+
+.section-heading p {
+    margin: 0;
+
+    color: #6c757d;
+    font-size: 14px;
+}
+
+
+/* =========================
+   Section Panel
+========================= */
+
+.section-panel {
+    background: #fff;
+
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+
+    padding: 22px;
+
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+
+/* =========================
+   Overview
+========================= */
+
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+
+    background: #fff;
+
+    overflow: hidden;
+}
+
+.overview-item {
+    padding: 18px;
+
+    border-right: 1px solid #dee2e6;
+}
+
+.overview-item:last-child {
+    border-right: none;
+}
+
+
+/* =========================
+   Dashboard Values
+========================= */
+
+.overview-item span,
+.revenue-summary-grid span,
+.invoice-count-grid span,
+.vehicle-summary span,
+.inventory-summary span {
+    display: block;
+
+    color: #6c757d;
+    font-size: 13px;
+
+    margin-bottom: 7px;
+}
+
+.overview-item strong,
+.revenue-summary-grid strong,
+.invoice-count-grid strong,
+.vehicle-summary strong,
+.inventory-summary strong {
+    display: block;
+
+    font-size: 22px;
+}
+
+
+/* =========================
+   Revenue
+========================= */
+
+.revenue-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+.invoice-count-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+/* =========================
+   Service Chart
+========================= */
+
+.service-chart {
+    min-height: 330px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+
+    gap: 18px;
+
+    padding: 20px 15px 0;
+
+    border-bottom: 1px solid #adb5bd;
+
+    overflow-x: auto;
+}
+
+.service-chart-column {
+    height: 290px;
+
+    min-width: 72px;
+    max-width: 105px;
+
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.service-chart-value {
+    font-size: 13px;
+    font-weight: 600;
+
+    margin-bottom: 6px;
+}
+
+.service-chart-bar {
+    width: 55px;
+    min-height: 2px;
+
+    border-radius: 5px 5px 0 0;
+
+    background: #0d6efd;
+
+    transition:
+        height 0.3s ease,
+        opacity 0.2s ease;
+}
+
+.service-chart-bar:hover {
+    opacity: 0.75;
+}
+
+.service-chart-label {
+    min-height: 38px;
+
+    margin-top: 9px;
+
+    text-align: center;
+
+    font-size: 12px;
+    color: #495057;
+}
+
+.service-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+}
+
+.service-detail-item {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 11px 13px;
+
+    background: #f8f9fa;
+
+    border-radius: 6px;
+}
+
+
+/* =========================
+   Vehicles
+========================= */
+
+.vehicle-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.detail-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 8px;
+}
+
+.detail-list-item {
+    padding: 7px 12px;
+
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   Inventory
+========================= */
+
+.inventory-summary {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 20px;
+}
+
+
+/* =========================
+   Dashboard Responsive
+========================= */
+
+@media (max-width: 1100px) {
+
+    .overview-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .overview-item:nth-child(3) {
+        border-right: none;
+    }
+
+    .revenue-summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .inventory-summary {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+@media (max-width: 767.98px) {
+
+    .overview-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .overview-item {
+        border-right: none;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .revenue-summary-grid,
+    .invoice-count-grid,
+    .vehicle-summary,
+    .service-detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .inventory-summary {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

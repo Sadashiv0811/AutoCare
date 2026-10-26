@@ -1,0 +1,326 @@
+/* =========================
+   Global
+========================= */
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+}
+
+.nav-link {
+    border-radius: 6px;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* =========================
+   Sidebar Container
+========================= */
+
+#sidebarContainer {
+    width: 250px;
+    min-width: 250px;
+
+    transition:
+        width 0.3s ease,
+        min-width 0.3s ease;
+}
+
+
+/* =========================
+   Sidebar
+========================= */
+
+.sidebar {
+    width: 250px;
+    min-width: 250px;
+
+    height: calc(100vh - 0px);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    z-index: 1030;
+
+    transition:
+        width 0.3s ease,
+        min-width 0.3s ease;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+
+/* =========================
+   Sidebar Header
+========================= */
+
+.sidebar-header {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.sidebar-header .d-flex {
+    gap: 8px;
+}
+
+.sidebar-title {
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+
+    transition:
+        opacity 0.2s ease,
+        width 0.3s ease;
+}
+
+.sidebar-toggle {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+.sidebar-toggle i {
+    transition: transform 0.3s ease;
+}
+
+/* Collapsed Header */
+.sidebar.collapsed .sidebar-header .d-flex {
+    justify-content: center;
+    gap: 0;
+}
+
+.sidebar.collapsed .sidebar-title {
+    display: none;
+}
+
+.sidebar.collapsed .sidebar-toggle {
+    margin: 0;
+}
+
+/* =========================
+   Sidebar Footer
+========================= */
+
+.sidebar-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    overflow: hidden;
+    white-space: nowrap;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.sidebar-footer button {
+    width: 100%;
+}
+
+.sidebar-footer #userName {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Collapsed Footer */
+.sidebar.collapsed .sidebar-footer {
+    padding: 12px 5px !important;
+}
+
+.sidebar.collapsed .sidebar-footer #userName {
+    display: none;
+}
+
+.sidebar.collapsed .sidebar-footer button {
+    font-size: 0;
+    padding: 6px 0;
+}
+
+.sidebar.collapsed .sidebar-footer button::after {
+    content: "\f1c3";
+    font-family: "bootstrap-icons";
+    font-size: 1rem;
+}
+
+/* =========================
+   Sidebar Navigation
+========================= */
+
+.sidebar .nav-link {
+    display: flex;
+    align-items: center;
+
+    white-space: nowrap;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.sidebar .nav-link i {
+    min-width: 24px;
+
+    text-align: center;
+
+    font-size: 1.1rem;
+}
+
+
+/* =========================
+   Sidebar Toggle
+========================= */
+
+.sidebar-toggle {
+    width: 34px;
+    height: 34px;
+
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+.sidebar-toggle i {
+    transition: transform 0.3s ease;
+}
+
+
+/* =========================
+   Main Content
+========================= */
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+
+    margin-left: 0;
+
+    transition:
+        margin-left 0.3s ease;
+}
+
+
+/* =========================
+   Collapsed Sidebar
+========================= */
+
+#sidebarContainer.sidebar-collapsed {
+    width: 70px;
+    min-width: 70px;
+}
+
+.sidebar.collapsed {
+    width: 70px;
+    min-width: 70px;
+}
+
+
+/* =========================
+   Hide AutoCare Title
+========================= */
+
+.sidebar.collapsed .sidebar-title {
+    opacity: 0;
+    width: 0;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   Center Toggle Button
+========================= */
+
+.sidebar.collapsed .sidebar-header .d-flex {
+    justify-content: center;
+}
+
+
+/* =========================
+   Navigation Labels
+========================= */
+
+.sidebar .nav-label {
+    opacity: 1;
+    white-space: nowrap;
+
+    transition: opacity 0.2s ease;
+}
+
+.sidebar.collapsed .nav-label {
+    display: none;
+}
+
+/* Center Navigation Icons */
+.sidebar.collapsed .nav-link {
+    justify-content: center;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+.sidebar.collapsed .nav-link i {
+    margin-right: 0 !important;
+}
+
+
+/* =========================
+   Center Navigation Icons
+========================= */
+
+.sidebar.collapsed .nav-link {
+    justify-content: center;
+
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+.sidebar.collapsed .nav-link i {
+    margin-right: 0 !important;
+}
+
+
+/* =========================
+   Rotate Toggle Icon
+========================= */
+
+.sidebar.collapsed .sidebar-toggle i {
+    transform: rotate(180deg);
+}
+
+
+/* =========================
+   Smaller Screens
+========================= */
+
+@media (max-width: 767.98px) {
+
+    .sidebar {
+        width: 200px;
+        min-width: 200px;
+    }
+
+    #sidebarContainer {
+        width: 200px;
+        min-width: 200px;
+    }
+
+    .main-content {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+}

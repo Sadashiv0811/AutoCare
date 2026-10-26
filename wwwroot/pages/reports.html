@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>AutoCare - Reports</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="../css/style.css" />
+	</head>
+	<body>
+		<div class="container-fluid p-0">
+			<div class="d-flex">
+				<div id="sidebarContainer"></div>
+				<main class="main-content px-4 py-4">
+					<div
+						class="d-flex justify-content-between align-items-center mb-3"
+					>
+						<div>
+							<h1 class="mb-1">Reports</h1>
+							<p class="text-muted mb-0">
+								Analyze revenue, services, vehicles and inventory.
+							</p>
+						</div>
+						<button id="exportReport" class="btn btn-outline-primary">
+							<i class="bi bi-download me-1"></i>Export CSV
+						</button>
+					</div>
+					<div id="reportAlert" class="alert d-none"></div>
+					<div class="card shadow-sm mb-4">
+						<div class="card-body">
+							<div class="row g-3 align-items-end">
+								<div class="col-md-4">
+									<label class="form-label">From Date</label
+									><input
+										id="reportFrom"
+										type="date"
+										class="form-control"
+										required
+									/>
+									<div class="invalid-feedback">
+										From Date is required and must not be after To
+										Date.
+									</div>
+								</div>
+								<div class="col-md-4">
+									<label class="form-label">To Date</label
+									><input
+										id="reportTo"
+										type="date"
+										class="form-control"
+										required
+									/>
+									<div class="invalid-feedback">
+										To Date is required and must not be before From
+										Date.
+									</div>
+								</div>
+								<div class="col-md-4 d-flex gap-2">
+									<button
+										id="generateReport"
+										class="btn btn-primary flex-fill"
+									>
+										Generate Report</button
+									><button
+										id="resetReport"
+										class="btn btn-outline-secondary"
+									>
+										Reset
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="reportLoading" class="text-center py-5 d-none">
+						<div class="spinner-border text-primary"></div>
+						<div class="mt-2 text-muted">Loading reports...</div>
+					</div>
+					<div id="reportContent">
+						<div class="row g-3 mb-4">
+							<div class="col-md-6 col-xl-3">
+								<div class="card shadow-sm h-100">
+									<div class="card-body">
+										<small class="text-muted">Invoiced Revenue</small>
+										<h3 id="rRevenue">₹0</h3>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 col-xl-3">
+								<div class="card shadow-sm h-100">
+									<div class="card-body">
+										<small class="text-muted">Paid Revenue</small>
+										<h3 id="rPaid">₹0</h3>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 col-xl-3">
+								<div class="card shadow-sm h-100">
+									<div class="card-body">
+										<small class="text-muted">Invoices</small>
+										<h3 id="rInvoices">0</h3>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 col-xl-3">
+								<div class="card shadow-sm h-100">
+									<div class="card-body">
+										<small class="text-muted">Service Jobs</small>
+										<h3 id="rJobs">0</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row g-4 mb-4">
+							<div class="col-lg">
+								<div class="card shadow-sm h-100">
+									<div class="card-header bg-white">
+										<h5 class="mb-0">Monthly Revenue</h5>
+									</div>
+									<div class="card-body table-responsive">
+										<table class="table table-sm align-middle">
+											<thead>
+												<tr>
+													<th>Month</th>
+													<th>Invoices</th>
+													<th>Invoiced</th>
+													<th>Paid</th>
+													<th>Unpaid</th>
+												</tr>
+											</thead>
+											<tbody id="monthlyRevenueBody"></tbody>
+										</table>
+										<div
+											class="d-flex justify-content-between align-items-center mt-3"
+										>
+											<small
+												id="reportInfo"
+												class="text-muted"
+											></small>
+											<nav aria-label="Report pagination">
+												<ul
+													id="reportPages"
+													class="pagination pagination-sm mb-0"
+												></ul>
+											</nav>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row g-4 mb-4">
+							<div class="col-lg-6">
+								<div class="card shadow-sm h-100">
+									<div class="card-header bg-white">
+										<h5 class="mb-0">Service Jobs by Type</h5>
+									</div>
+									<div class="card-body" id="serviceTypeReport"></div>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="card shadow-sm h-100">
+									<div class="card-header bg-white">
+										<h5 class="mb-0">Service Status</h5>
+									</div>
+									<div class="card-body" id="statusReport"></div>
+								</div>
+							</div>
+						</div>
+						<div class="row g-4 mb-4">
+							<div class="col-lg-6">
+								<div class="card shadow-sm h-100">
+									<div class="card-header bg-white">
+										<h5 class="mb-0">Vehicles by Make</h5>
+									</div>
+									<div class="card-body" id="makeReport"></div>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="col-lg-6 w-100 mb-4">
+									<div class="card shadow-sm">
+										<div class="card-header bg-white">
+											<h5 class="mb-0">Vehicles by Fuel Type</h5>
+										</div>
+										<div class="card-body" id="fuelReport"></div>
+									</div>
+								</div>
+								<div class="col-lg-6 w-100">
+									<div class="card shadow-sm">
+										<div class="card-header bg-white">
+											<h5 class="mb-0">Vehicles Count</h5>
+										</div>
+										<div class="card-body" id="vehicleCountReport"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card shadow-sm">
+							<div class="card-header bg-white">
+								<h5 class="mb-0">Active Parts Inventory Summary</h5>
+							</div>
+							<div class="card-body">
+								<div class="row g-3">
+									<div class="col-md-2">
+										<small class="text-muted">Active Parts</small>
+										<h4 id="invActive">0</h4>
+									</div>
+									<div class="col-md-2">
+										<small class="text-muted">Quantity</small>
+										<h4 id="invQty">0</h4>
+									</div>
+									<div class="col-md-2">
+										<small class="text-muted">Low Stock</small>
+										<h4 id="invLow">0</h4>
+									</div>
+									<div class="col-md-2">
+										<small class="text-muted">Out of Stock</small>
+										<h4 id="invEmpty">0</h4>
+									</div>
+									<div class="col-md-2">
+										<small class="text-muted">Inventory Value</small>
+										<h4 id="invValue">₹0</h4>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card shadow-sm mt-4">
+							<div class="card-header bg-white">
+								<h5 class="mb-0">Low & Out of Stock Parts</h5>
+							</div>
+							<div class="card-body table-responsive">
+								<table class="table table-sm align-middle mb-0">
+									<thead>
+										<tr>
+											<th>Part No.</th>
+											<th>Name</th>
+											<th>Quantity</th>
+											<th>Minimum Stock</th>
+											<th>Unit Price</th>
+											<th>Status</th>
+										</tr>
+									</thead>
+									<tbody id="lowStockReportBody"></tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</main>
+			</div>
+		</div>
+
+		<script src="../js/api.js"></script>
+		<script src="../js/sideNavbar.js"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/reports.js"></script>
+	</body>
+</html>
